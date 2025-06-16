@@ -1,10 +1,12 @@
 /* Estilos generales */
+* {
+    box-sizing: border-box;
+}
 body {
     font-family: Arial, sans-serif;
     background-color: #efcfe3;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    padding-top: 100px; /* espacio para que el menú y header no tapen el contenido */
 }
 
 /* Encabezado */
@@ -15,6 +17,10 @@ header {
     padding: 15px 0;
     font-size: 24px;
     font-weight: bold;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
 }
 
 /* Menú de navegación */
@@ -24,14 +30,9 @@ nav {
     text-align: center;
     position: fixed;
     width: 100%;
-    top: 0;
+    top: 60px; /* se coloca debajo del header */
     left: 0;
-    z-index: 1000;
-}
-
-/* Ajustar el margen del cuerpo después del menú fijo */
-body {
-    padding-top: 60px; /* Esto asegura que el contenido no se solape con el menú fijo */
+    z-index: 998;
 }
 
 .menu {
@@ -67,6 +68,7 @@ body {
     margin: auto;
     padding: 20px;
 }
+
 .section {
     background-color: white;
     padding: 20px;
@@ -112,9 +114,9 @@ h2 {
 
 /* Pie de página */
 footer {
-    background-color:  #7e7e7e59;
+    background-color: #7e7e7e59;
     color: white;
     text-align: center;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 20px;
 }
