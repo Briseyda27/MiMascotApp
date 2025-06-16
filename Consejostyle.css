@@ -6,7 +6,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #efcfe3;
     margin: 0;
-    padding-top: 120px; /* espacio suficiente para header + menú */
+    padding-top: 100px; /* espacio suficiente para header + menú */
 }
 
 /* Encabezado */
@@ -29,13 +29,13 @@ nav {
     padding: 10px 0;
     text-align: center;
     position: fixed;
-    top: 60px; /* debajo del header */
     width: 100%;
     left: 0;
     z-index: 999;
 }
 
 .menu {
+    top: 60px; /* debajo del header */
     list-style: none;
     padding: 0;
     margin: 0;
