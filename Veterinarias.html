@@ -13,59 +13,63 @@
 
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 
-<script>
-  const scriptURL = 'https://api.sheetbest.com/sheets/777601fd-030d-4631-b1bb-12f7156657d8';
+    <script>
+        function showAppointmentForm(id) {
+            var form = document.getElementById(id);
+            form.style.display = 'block';
+        }
 
-  // Función para mostrar u ocultar el formulario según el id
-  function showAppointmentForm(formId) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    if (form.style.display === "none" || form.style.display === "") {
-      form.style.display = "block";
-    } else {
-      form.style.display = "none";
-    }
-  }
+        function confirmAppointment(formId) {
+            const form = document.getElementById(formId);
+            const inputs = form.querySelectorAll('input, select');
+            let valid = true;
+            let missingFields = [];
 
-  // Función para enviar los datos del formulario
-  function enviarCita(formId, nameId, petId, serviceId, dateId, timeId, vetName) {
-    const form = document.getElementById(formId);
-    const nameInput = document.getElementById(nameId);
-    const petSelect = document.getElementById(petId);
-    const serviceSelect = document.getElementById(serviceId);
-    const dateInput = document.getElementById(dateId);
-    const timeInput = document.getElementById(timeId);
+            inputs.forEach(input => {
+                if (input.type !== 'button' && input.style.display !== 'none') {
+                    if (!input.value || input.value.trim() === '') {
+                        valid = false;
+                        missingFields.push(input.placeholder || input.name || input.id);
+                    }
+                }
+            });
 
-    if (!nameInput.value || !petSelect.value || !serviceSelect.value || !dateInput.value || !timeInput.value) {
-      alert('Por favor, completa todos los campos antes de confirmar la cita.');
-      return;
-    }
+            if (!valid) {
+                alert('Por favor, completa todos los campos antes de confirmar la cita.');
+                return;
+            }
 
-    const formData = new URLSearchParams();
-    formData.append("Nombre", nameInput.value);
-    formData.append("Tipo de Mascota", petSelect.value);
-    formData.append("Servicio", serviceSelect.value);
-    formData.append("Fecha", dateInput.value);
-    formData.append("Hora", timeInput.value);
-    formData.append("Veterinaria", vetName);
+            const date = form.querySelector('input[type="date"]').value;
+            const time = form.querySelector('input[type="time"]').value;
+            alert('Cita confirmada para ' + date + ' a las ' + time);
+            form.style.display = 'none';
+        }
 
-
-    fetch(scriptURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString()
-    })
-      .then(response => response.text())
-      .then(result => {
-  console.log(result); // Para ver exactamente qué devuelve Sheet.best
-  alert("✅ Cita enviada correctamente.");
-  form.reset();
-  form.style.display = 'none';
-})
-  }
-</script>
-
-
+        document.addEventListener('DOMContentLoaded', () => {
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                select.addEventListener('change', () => {
+                    const inputId = select.id + 'Other';
+                    const existingInput = document.getElementById(inputId);
+                    if (select.value === 'Otro') {
+                        if (!existingInput) {
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.className = 'form-control mt-2';
+                            input.placeholder = 'Especifica';
+                            input.id = inputId;
+                            input.required = true;
+                            select.insertAdjacentElement('afterend', input);
+                        }
+                    } else {
+                        if (existingInput) {
+                            existingInput.remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     </head>
 <body>
     <!-- NAVBAR -->
@@ -140,9 +144,9 @@
                             <input type="time" id="timeSanMartin" class="form-control" required>
 
                             <button type="button" class="btn btn-confirm mt-2"
-    onclick="enviarCita('appointmentFormSanMartin', 'nameSanMartin', 'petSanMartin', 'serviceSanMartin', 'dateSanMartin', 'timeSanMartin', 'San Martín')">
-    Confirmar Cita
-</button>
+                                    onclick="confirmAppointment('appointmentFormSanMartin','dateSanMartin','timeSanMartin')">
+                                Confirmar Cita
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -189,9 +193,9 @@
                             <input type="time" id="timeMachon" class="form-control" required>
 
                             <button type="button" class="btn btn-confirm mt-2"
-    onclick="enviarCita('appointmentFormMachon', 'nameMachon', 'petMachon', 'serviceMachon', 'dateMachon', 'timeMachon', 'Machón')">
-    Confirmar Cita
-</button>
+                                    onclick="confirmAppointment('appointmentFormMachon','dateMachon','timeMachon')">
+                                Confirmar Cita
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -236,11 +240,11 @@
 
                             <label for="timeSantaJulia">Seleccionar Hora</label>
                             <input type="time" id="timeSantaJulia" class="form-control" required>
-<button type="button" class="btn btn-confirm mt-2"
-    onclick="enviarCita('appointmentFormSantaJulia', 'nameSantaJulia', 'petSantaJulia', 'serviceSantaJulia', 'dateSantaJulia', 'timeSantaJulia', 'Santa Julia')">
-    Confirmar Cita
-</button>
 
+                            <button type="button" class="btn btn-confirm mt-2"
+                                    onclick="confirmAppointment('appointmentFormSantaJulia','dateSantaJulia','timeSantaJulia')">
+                                Confirmar Cita
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -286,10 +290,10 @@
                             <label for="timePetCare">Seleccionar Hora</label>
                             <input type="time" id="timePetCare" class="form-control" required>
 
-                           <button type="button" class="btn btn-confirm mt-2"
-    onclick="enviarCita('appointmentFormPetCare', 'namePetCare', 'petPetCare', 'servicePetCare', 'datePetCare', 'timePetCare', 'Peluvet')">
-    Confirmar Cita
-</button>
+                            <button type="button" class="btn btn-confirm mt-2"
+                                    onclick="confirmAppointment('appointmentFormPetCare','datePetCare','timePetCare')">
+                                Confirmar Cita
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -335,10 +339,10 @@
                             <label for="timeHuellaAmiga">Seleccionar Hora</label>
                             <input type="time" id="timeHuellaAmiga" class="form-control" required>
 
-                           <button type="button" class="btn btn-confirm mt-2"
-    onclick="enviarCita('appointmentFormHuellaAmiga', 'nameHuellaAmiga', 'petHuellaAmiga', 'serviceHuellaAmiga', 'dateHuellaAmiga', 'timeHuellaAmiga', 'Trébol')">
-    Confirmar Cita
-</button>
+                            <button type="button" class="btn btn-confirm mt-2"
+                                    onclick="confirmAppointment('appointmentFormHuellaAmiga','dateHuellaAmiga','timeHuellaAmiga')">
+                                Confirmar Cita
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -383,11 +387,11 @@
 
                             <label for="timeFelinaCanina">Seleccionar Hora</label>
                             <input type="time" id="timeFelinaCanina" class="form-control" required>
-<!-- Flores -->
-<button type="button" class="btn btn-confirm mt-2"
-    onclick="enviarCita('appointmentFormFelinaCanina', 'nameFelinaCanina', 'petFelinaCanina', 'serviceFelinaCanina', 'dateFelinaCanina', 'timeFelinaCanina', 'Flores')">
-    Confirmar Cita
-</button>
+
+                            <button type="button" class="btn btn-confirm mt-2"
+                                    onclick="confirmAppointment('appointmentFormFelinaCanina','dateFelinaCanina','timeFelinaCanina')">
+                                Confirmar Cita
+                            </button>
                         </div>
                     </div>
                 </div>
