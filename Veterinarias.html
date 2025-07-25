@@ -19,7 +19,7 @@
             form.style.display = 'block';
         }
 
-        function confirmAppointment(formId) {
+        function confirmAppointment(formId, dateId, timeId) {
             const form = document.getElementById(formId);
             const inputs = form.querySelectorAll('input, select');
             let valid = true;
@@ -41,8 +41,8 @@
 
             const date = form.querySelector('input[type="date"]').value;
             const time = form.querySelector('input[type="time"]').value;
-            alert('Cita confirmada para ' + date + ' a las ' + time);
-            form.style.display = 'none';
+            const vetId = formId.replace("appointmentForm", "");
+            enviarCita(vetId);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -69,7 +69,50 @@
                 });
             });
         });
+
+        function enviarCita(vetId) {
+            const nombre = document.getElementById(`name${vetId}`).value;
+            const tipo = document.getElementById(`pet${vetId}`).value;
+            const servicio = document.getElementById(`service${vetId}`).value;
+            const fecha = document.getElementById(`date${vetId}`).value;
+            const hora = document.getElementById(`time${vetId}`).value;
+
+            const url = 'https://script.google.com/macros/s/AKfycbwOZ9TI4kYhaXDJAhTV1Ona8jbVT_oaKdfMB-t9sF-siUHrusBJ_uMSwL0BUbGSWsadUQ/exec'; // reemplaza por tu URL real
+
+            const data = {
+                nombre: nombre,
+                tipoMascota: tipo,
+                servicio: servicio,
+                fecha: fecha,
+                hora: hora,
+                veterinaria: document.querySelector(`#${vetId} .card-title`).textContent.trim()
+            };
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(res => {
+                    if (res.success === false) {
+                        alert("⚠️ " + res.message);
+                    } else if (res.success === true) {
+                        alert("✅ Cita enviada exitosamente.");
+                        document.getElementById(`appointmentForm${vetId}`).reset();
+                        document.getElementById(`appointmentForm${vetId}`).style.display = 'none';
+                    } else {
+                        alert("❌ Error desconocido.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("❌ No se pudo enviar la cita.");
+                });
+        }
     </script>
+
+
     </head>
 <body>
     <!-- NAVBAR -->
