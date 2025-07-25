@@ -1,102 +1,42 @@
-body {
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    padding-top: 60px; /* Deja espacio para el menú fijo */
+.veterinarias-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* Menú fijado */
-.navbar {
-    background-color: #ea9ab2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-brand,
-.nav-link {
-    color: #fff !important;
-}
-
-/* Tarjetas */
-.card {
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card img {
-    object-fit: cover;
-    height: 270px;
-}
-
-/* Botón de agendar cita */
-.btn-appointment {
-    margin-top: 10px;
-    background-color: #007bff;
-    color: white;
-}
-
-/* Formulario de cita (form o div) */
-.appointment-form {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Etiquetas del formulario */
-.appointment-form label {
-    margin-top: 10px;
-    display: block;
+.section-title {
+    font-size: 28px;
     font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
     color: #333;
 }
 
-/* Inputs y selects del formulario */
-.appointment-form input,
-.appointment-form select {
-    margin-bottom: 15px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box;
+.vet-card {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: none; /* elimina borde del form */
 }
 
-/* Botón de confirmación */
-.btn-confirm {
-    margin-top: 10px;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
+.vet-card h3 {
+    margin-top: 0;
+    color: #ea9ab2;
 }
 
-/* Estilo general de botones */
-.btn {
-    display: inline-block;
-    background-color: #f3aad7;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
+.vet-card p {
+    margin: 5px 0;
+    color: #333;
+    line-height: 1.5;
 }
 
-/* Pie de página */
-footer {
-    background-color: #7e7e7e59;
-    color: #1d0f0f; /* Corregido: color válido */
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
+@media (max-width: 600px) {
+    .vet-card {
+        padding: 15px;
+    }
+    .section-title {
+        font-size: 22px;
+    }
 }
