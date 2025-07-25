@@ -77,38 +77,41 @@
             const fecha = document.getElementById(`date${vetId}`).value;
             const hora = document.getElementById(`time${vetId}`).value;
 
-            const url = 'https://script.google.com/macros/s/AKfycbz2iV4_fwDTbUxll0jND9Rh87BIP_DBc-ArxQ_EtbgaJ6N_JxI87YOM1mKnAA2OZEUWeA/exec'; // reemplaza por tu URL real
+            const url = 'https://script.google.com/macros/s/AKfycby96a6V1lSY0m5wqg-I1vJNgHjgJukwAhPDg89HgY9QE7TYtJgRKAT1H5LwxoLrqvIgNQ/exec'; // reemplaza por tu URL real
+// Obtener nombre de la veterinaria correctamente
+const card = document.getElementById(vetId).closest('.card');
+const nombreVet = card.querySelector('.card-title').textContent.trim();
 
-            const data = {
-                nombre: nombre,
-                tipoMascota: tipo,
-                servicio: servicio,
-                fecha: fecha,
-                hora: hora,
-                veterinaria: document.querySelector(`#${vetId} .card-title`).textContent.trim()
-            };
+// Crear el objeto con los datos
+const data = {
+    nombre: nombre,
+    tipoMascota: tipo,
+    servicio: servicio,
+    fecha: fecha,
+    hora: hora,
+    veterinaria: nombreVet
+};
 
             fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             })
-                .then(response => response.json())
-                .then(res => {
-                    if (res.success === false) {
-                        alert("⚠️ " + res.message);
-                    } else if (res.success === true) {
-                        alert("✅ Cita enviada exitosamente.");
-                        document.getElementById(`appointmentForm${vetId}`).reset();
-                        document.getElementById(`appointmentForm${vetId}`).style.display = 'none';
-                    } else {
-                        alert("❌ Error desconocido.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert("❌ No se pudo enviar la cita.");
-                });
+               .then(res => {
+    if (typeof res !== 'object' || res === null) {
+        throw new Error("Respuesta inesperada del servidor");
+    }
+
+    if (res.success === false) {
+        alert("⚠️ " + res.message);
+    } else if (res.success === true) {
+        alert("✅ Cita enviada exitosamente.");
+        document.getElementById(`appointmentForm${vetId.charAt(0).toUpperCase() + vetId.slice(1)}`).reset();
+        document.getElementById(`appointmentForm${vetId.charAt(0).toUpperCase() + vetId.slice(1)}`).style.display = 'none';
+    } else {
+        alert("❌ Error desconocido.");
+    }
+})
         }
     </script>
 
