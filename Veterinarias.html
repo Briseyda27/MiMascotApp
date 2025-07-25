@@ -14,7 +14,6 @@
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 
     <script>
-        /* --------------- MANTENIDO SIN CAMBIOS --------------- */
         function showAppointmentForm(id) {
             var form = document.getElementById(id);
             form.style.display = 'block';
@@ -32,7 +31,30 @@
             alert('Cita confirmada para ' + date + ' a las ' + time);
             document.getElementById(id).style.display = 'none';
         }
-        /* ----------------------------------------------------- */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const selects = document.querySelectorAll('select[id^="service"]');
+            selects.forEach(select => {
+                select.addEventListener('change', () => {
+                    const inputId = select.id + 'Other';
+                    const existingInput = document.getElementById(inputId);
+                    if (select.value === 'Otro') {
+                        if (!existingInput) {
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.className = 'form-control mt-2';
+                            input.placeholder = 'Especifica el servicio';
+                            input.id = inputId;
+                            select.insertAdjacentElement('afterend', input);
+                        }
+                    } else {
+                        if (existingInput) {
+                            existingInput.remove();
+                        }
+                    }
+                });
+            });
+        });
     </script>
 </head>
 <body>
