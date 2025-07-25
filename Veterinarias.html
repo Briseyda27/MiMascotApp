@@ -13,64 +13,66 @@
 
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 
-    <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyjSgkfIZ86LlgBivnLR4n0DGoeCkn7zblM_pOUFScu_meff5HXpzgMnCGqniuHUeHuLA/exec';
-    function confirmAppointment(formId) {
-        const form = document.getElementById(formId);
-        const nameInput = form.querySelector('input[type="text"]');
-        const petSelect = form.querySelector('select[id^="pet"]');
-        const serviceSelect = form.querySelector('select[id^="service"]');
-        const dateInput = form.querySelector('input[type="date"]');
-        const timeInput = form.querySelector('input[type="time"]');
-        const vetTitle = form.closest('.card-body').querySelector('h5').innerText;
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyjSgkfIZ86LlgBivnLR4n0DGoeCkn7zblM_pOUFScu_meff5HXpzgMnCGqniuHUeHuLA/exec';
 
-        if (!nameInput.value || !petSelect.value || !serviceSelect.value || !dateInput.value || !timeInput.value) {
-            alert('Por favor, completa todos los campos antes de confirmar la cita.');
-            return;
-        }
-
-        const formData = new URLSearchParams();
-        formData.append("Nombre", nameInput.value);
-        formData.append("Tipo de Mascota", petSelect.value);
-        formData.append("Servicio", serviceSelect.value);
-        formData.append("Fecha", dateInput.value);
-        formData.append("Hora", timeInput.value);
-        formData.append("Veterinaria", vetTitle);
-
-        fetch(scriptURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData.toString()
-        })
-        .then(response => response.text())
-        .then(result => {
-            if (result === "Success") {
-                alert("✅ Cita guardada con éxito.");
-                form.reset();
-                form.style.display = 'none';
-            } else if (result === "Hora no disponible") {
-                alert("❌ Esta hora ya está ocupada para esta veterinaria.");
-            } else {
-                alert("⚠️ Ocurrió un error: " + result);
-            }
-        })
-        .catch(error => {
-            console.error('Error al enviar:', error);
-            alert("🚫 Error al guardar la cita.");
-        });
+  // Función para mostrar u ocultar el formulario según el id
+  function showAppointmentForm(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    if (form.style.display === "none" || form.style.display === "") {
+      form.style.display = "block";
+    } else {
+      form.style.display = "none";
     }
-        // 🔧 Esta función muestra u oculta el formulario al hacer clic en “Hacer Cita”
-  function mostrarFormulario() {
-      const form = document.getElementById("appointmentForm");
-      if (form.style.display === "none" || form.style.display === "") {
-          form.style.display = "block";
-      } else {
-          form.style.display = "none";
-      }
+  }
+
+  // Función para enviar los datos del formulario
+  function enviarCita(formId, nameId, petId, serviceId, dateId, timeId, vetName) {
+    const form = document.getElementById(formId);
+    const nameInput = document.getElementById(nameId);
+    const petSelect = document.getElementById(petId);
+    const serviceSelect = document.getElementById(serviceId);
+    const dateInput = document.getElementById(dateId);
+    const timeInput = document.getElementById(timeId);
+
+    if (!nameInput.value || !petSelect.value || !serviceSelect.value || !dateInput.value || !timeInput.value) {
+      alert('Por favor, completa todos los campos antes de confirmar la cita.');
+      return;
+    }
+
+    const formData = new URLSearchParams();
+    formData.append("Nombre", nameInput.value);
+    formData.append("Tipo de Mascota", petSelect.value);
+    formData.append("Servicio", serviceSelect.value);
+    formData.append("Fecha", dateInput.value);
+    formData.append("Hora", timeInput.value);
+    formData.append("Veterinaria", vetName);
+
+    fetch(scriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
+    })
+      .then(response => response.text())
+      .then(result => {
+        if (result === "Success") {
+          alert("✅ Cita guardada con éxito.");
+          form.reset();
+          form.style.display = 'none';
+        } else if (result === "Hora no disponible") {
+          alert("❌ Esta hora ya está ocupada para esta veterinaria.");
+        } else {
+          alert("⚠️ Ocurrió un error: " + result);
+        }
+      })
+      .catch(error => {
+        console.error('Error al enviar:', error);
+        alert("🚫 Error al guardar la cita.");
+      });
   }
 </script>
+
 
     </head>
 <body>
