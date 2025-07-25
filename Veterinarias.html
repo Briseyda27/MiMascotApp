@@ -61,6 +61,15 @@
             alert("🚫 Error al guardar la cita.");
         });
     }
+        // 🔧 Esta función muestra u oculta el formulario al hacer clic en “Hacer Cita”
+  function mostrarFormulario() {
+      const form = document.getElementById("appointmentForm");
+      if (form.style.display === "none" || form.style.display === "") {
+          form.style.display = "block";
+      } else {
+          form.style.display = "none";
+      }
+  }
 </script>
 
     </head>
