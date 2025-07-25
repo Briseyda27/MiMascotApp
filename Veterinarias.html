@@ -14,7 +14,7 @@
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 
 <script>
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbyJVoRLCwYyge5XbVcs89k-dHcit6a5gOvJ7Fb8McnPjVgOkIn-llV5s5oR2-T_4I65AQ/exec';
+  const scriptURL = 'https://api.sheetbest.com/sheets/777601fd-030d-4631-b1bb-12f7156657d8';
 
   // Función para mostrar u ocultar el formulario según el id
   function showAppointmentForm(formId) {
@@ -57,20 +57,11 @@
     })
       .then(response => response.text())
       .then(result => {
-        if (result === "Success") {
-          alert("✅ Cita guardada con éxito.");
-          form.reset();
-          form.style.display = 'none';
-        } else if (result === "Hora no disponible") {
-          alert("❌ Esta hora ya está ocupada para esta veterinaria.");
-        } else {
-          alert("⚠️ Ocurrió un error: " + result);
-        }
-      })
-      .catch(error => {
-        console.error('Error al enviar:', error);
-        alert("🚫 Error al guardar la cita.");
-      });
+  console.log(result); // Para ver exactamente qué devuelve Sheet.best
+  alert("✅ Cita enviada correctamente.");
+  form.reset();
+  form.style.display = 'none';
+})
   }
 </script>
 
