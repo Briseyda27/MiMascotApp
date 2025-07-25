@@ -49,6 +49,7 @@
     formData.append("Hora", timeInput.value);
     formData.append("Veterinaria", vetName);
 
+
     fetch(scriptURL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
