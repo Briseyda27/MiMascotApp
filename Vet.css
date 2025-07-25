@@ -74,3 +74,33 @@ footer {
     padding: 10px; /* Espaciado interno del pie de página */
     margin-top: 20px; /* Espacio superior para el pie de página */
 }
+/* Asegura que el formulario se vea igual que antes, aunque sea una etiqueta <form> */
+form.appointment-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff; /* Blanco para mantenerlo visible sobre el fondo */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo para los inputs y selects del formulario */
+form.appointment-form input,
+form.appointment-form select {
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Estilo para las etiquetas */
+form.appointment-form label {
+    margin-top: 10px;
+    display: block;
+    font-weight: bold;
+    color: #333;
+}
+
