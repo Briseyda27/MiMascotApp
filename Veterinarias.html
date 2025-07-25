@@ -14,101 +14,52 @@
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 
     <script>
-    function showAppointmentForm(id) {
-        var form = document.getElementById(id);
-        form.style.display = 'block';
-    }
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyjSgkfIZ86LlgBivnLR4n0DGoeCkn7zblM_pOUFScu_meff5HXpzgMnCGqniuHUeHuLA/exec';
+    function confirmAppointment(formId) {
+        const form = document.getElementById(formId);
+        const nameInput = form.querySelector('input[type="text"]');
+        const petSelect = form.querySelector('select[id^="pet"]');
+        const serviceSelect = form.querySelector('select[id^="service"]');
+        const dateInput = form.querySelector('input[type="date"]');
+        const timeInput = form.querySelector('input[type="time"]');
+        const vetTitle = form.closest('.card-body').querySelector('h5').innerText;
 
-    // Función para manejar campo "Otro" en servicio
-    document.addEventListener('DOMContentLoaded', () => {
-        const selects = document.querySelectorAll('select');
-        selects.forEach(select => {
-            select.addEventListener('change', () => {
-                const inputId = select.id + 'Other';
-                const existingInput = document.getElementById(inputId);
-                if (select.value === 'Otro') {
-                    if (!existingInput) {
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.className = 'form-control mt-2';
-                        input.placeholder = 'Especifica';
-                        input.id = inputId;
-                        input.required = true;
-                        select.insertAdjacentElement('afterend', input);
-                    }
-                } else {
-                    if (existingInput) {
-                        existingInput.remove();
-                    }
-                }
-            });
-        });
-    });
-
-    async function enviarCita(formId, nombreId, petId, serviceId, dateId, timeId, veterinariaNombre) {
-        // Obtener valores
-        const nombre = document.getElementById(nombreId).value.trim();
-        const mascota = document.getElementById(petId).value;
-        let servicio = document.getElementById(serviceId).value;
-
-        // Revisar si campo "Otro" está visible para servicio
-        const otroServicioInput = document.getElementById(serviceId + 'Other');
-        if (servicio === 'Otro' && otroServicioInput) {
-            servicio = otroServicioInput.value.trim();
-            if (!servicio) {
-                alert('Por favor, especifica el servicio.');
-                return;
-            }
-        }
-
-        const fecha = document.getElementById(dateId).value;
-        const hora = document.getElementById(timeId).value;
-
-        // Validación básica
-        if (!nombre || !mascota || !servicio || !fecha || !hora) {
-            alert('Por favor completa todos los campos.');
+        if (!nameInput.value || !petSelect.value || !serviceSelect.value || !dateInput.value || !timeInput.value) {
+            alert('Por favor, completa todos los campos antes de confirmar la cita.');
             return;
         }
 
-        // Construir objeto con datos
-        const datos = {
-            nombre: nombre,
-            mascota: mascota,
-            servicio: servicio,
-            fecha: fecha,
-            hora: hora,
-            veterinaria: veterinariaNombre
-        };
+        const formData = new URLSearchParams();
+        formData.append("Nombre", nameInput.value);
+        formData.append("Tipo de Mascota", petSelect.value);
+        formData.append("Servicio", serviceSelect.value);
+        formData.append("Fecha", dateInput.value);
+        formData.append("Hora", timeInput.value);
+        formData.append("Veterinaria", vetTitle);
 
-        try {
-            // Pega aquí la URL de tu Google Apps Script Web App
-            const url = 'https://script.google.com/macros/s/AKfycbxtiyo8_dRuzjxotvbA9w4DjJEKg9pUFtekCkW-mkyQHmhbqjqdajK1qwW4UZ0K0UzNbA/exec';
-
-            const respuesta = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(datos)
-            });
-
-            const textoRespuesta = await respuesta.text();
-
-            if (textoRespuesta.includes('✅')) {
-                alert('Cita guardada con éxito.');
-                // Ocultar formulario y limpiar
-                const form = document.getElementById(formId);
-                form.style.display = 'none';
+        fetch(scriptURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData.toString()
+        })
+        .then(response => response.text())
+        .then(result => {
+            if (result === "Success") {
+                alert("✅ Cita guardada con éxito.");
                 form.reset();
-                // Quitar input "Otro" si existe
-                const otroInput = document.getElementById(serviceId + 'Other');
-                if (otroInput) otroInput.remove();
+                form.style.display = 'none';
+            } else if (result === "Hora no disponible") {
+                alert("❌ Esta hora ya está ocupada para esta veterinaria.");
             } else {
-                alert(textoRespuesta);
+                alert("⚠️ Ocurrió un error: " + result);
             }
-        } catch (error) {
-            alert('Error al guardar la cita: ' + error.message);
-        }
+        })
+        .catch(error => {
+            console.error('Error al enviar:', error);
+            alert("🚫 Error al guardar la cita.");
+        });
     }
 </script>
 
