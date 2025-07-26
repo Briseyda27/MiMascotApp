@@ -15,9 +15,18 @@
 
     <script>
         function showAppointmentForm(id) {
-            var form = document.getElementById(id);
-            form.style.display = 'block';
-        }
+    // Oculta todos los formularios de cita
+    const allForms = document.querySelectorAll('.appointment-form');
+    allForms.forEach(form => {
+        form.style.display = 'none';
+    });
+
+    // Muestra solo el formulario seleccionado
+    const form = document.getElementById(id);
+    if (form) {
+        form.style.display = 'block';
+    }
+}
 
         function confirmAppointment(formId) {
             const form = document.getElementById(formId);
@@ -347,6 +356,9 @@
                                 Confirmar Cita
                             </button>
                         </form>
+                    </div>
+                </div>
+            </div>
 
             <!-- === FLORES === -->
             <div class="col-md-4" id="flores">
@@ -393,8 +405,7 @@
                                 Confirmar Cita
                             </button>
                         </form>
-                
-
+                    </div>
         </div><!-- /.row -->
     </div><!-- /.container -->
 
