@@ -1,51 +1,76 @@
-.veterinarias-section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
+body {
+    background-color: #f8f9fa; /* Color de fondo de la página */
+    margin: 0; /* Elimina el margen por defecto del body */
+    padding: 0; /* Elimina el padding por defecto del body */
 }
 
-.section-title {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+/* Menú fijado */
+.navbar {
+    background-color: #ea9ab2; /* Color de fondo del menú */
+    position: fixed; /* Fija el menú en la parte superior de la página */
+    top: 0; /* Posiciona el menú en la parte superior */
+    left: 0; /* Posiciona el menú a la izquierda */
+    width: 100%; /* El menú ocupa todo el ancho de la página */
+    z-index: 1000; /* Asegura que el menú esté encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra opcional para darle profundidad al menú */
 }
 
-.vet-card {
-    background-color: #ffffff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border: none; /* elimina borde del form */
+/* Espacio extra para el contenido después del menú fijo */
+body {
+    padding-top: 60px; /* Ajusta este valor si el menú tiene un tamaño diferente */
 }
 
-.vet-card h3 {
-    margin-top: 0;
-    color: #ea9ab2;
+.navbar-brand, .nav-link {
+    color: #fff !important; /* Color del texto de la marca y los enlaces del menú, forzando el color blanco */
 }
 
-.vet-card p {
-    margin: 5px 0;
-    color: #333;
-    line-height: 1.5;
+/* Estilos para las tarjetas */
+.card {
+    margin-bottom: 20px; /* Espacio inferior entre las tarjetas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
 }
 
-@media (max-width: 600px) {
-    .vet-card {
-        padding: 15px;
-    }
-    .section-title {
-        font-size: 22px;
-    }
-}
-.veterinarias-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+.card img {
+    object-fit: cover; /* Asegura que la imagen cubra el área de la tarjeta */
+    height: 270px; /* Altura fija para las imágenes de las tarjetas */
 }
 
+/* Botón para la cita */
+.btn-appointment {
+    margin-top: 10px; /* Espacio superior para el botón de cita */
+    background-color: #007bff; /* Color de fondo del botón de cita */
+    color: white; /* Color del texto del botón de cita */
+}
+
+/* Formulario de cita (inicialmente oculto) */
+.appointment-form {
+    display: none; /* Oculta el formulario de cita por defecto */
+    margin-top: 20px; /* Espacio superior para el formulario cuando se muestre */
+}
+
+/* Botón de confirmación */
+.btn-confirm {
+    margin-top: 10px; /* Espacio superior para el botón de confirmación */
+    background-color: #28a745; /* Color de fondo del botón de confirmación */
+    color: white; /* Color del texto del botón de confirmación */
+}
+
+/* Botones generales */
+.btn {
+    display: inline-block; /* Permite que el botón se comporte como un bloque en línea */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    background-color: #f3aad7; /* Color de fondo general de los botones */
+    color: white; /* Color del texto de los botones */
+    text-align: center; /* Centra el texto dentro del botón */
+    text-decoration: none; /* Elimina el subrayado del texto */
+    border-radius: 5px; /* Bordes redondeados para los botones */
+    font-size: 16px; /* Tamaño de fuente del texto en los botones */
+}
+
+footer {
+    background-color:  #7e7e7e59; /* Color de fondo del pie de página */
+    color: #dae9b8(29, 15, 15); /* Color del texto del pie de página (parece un error, ya que debería ser un color hexadecimal o rgb) */
+    text-align: center; /* Centra el texto en el pie de página */
+    padding: 10px; /* Espaciado interno del pie de página */
+    margin-top: 20px; /* Espacio superior para el pie de página */
+}
