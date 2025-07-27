@@ -1,28 +1,125 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Meta etiquetas para definir el tipo de contenido y la vista en dispositivos móviles -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consejos para Mascotas</title>
-    <!-- Enlace a la hoja de estilos CSS -->
-    <link rel="stylesheet" href="Primeros.css">
-    <!-- Icono de la página -->
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
+
+    <style>
+        body {
+            background-color: #fde4ec;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #4a154b;
+        }
+
+        header {
+            background-color: #f8bbd0;
+            padding: 20px;
+            text-align: center;
+            color: #4a154b;
+        }
+
+        nav.menu {
+            background-color: #f48fb1;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav.menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav.menu a:hover {
+            text-decoration: underline;
+        }
+
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .tarjeta {
+            width: 300px;
+            background-color: #fff0f5;
+            border: 2px solid #f48fb1;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(244, 143, 177, 0.3);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .tarjeta:hover {
+            transform: scale(1.02);
+        }
+
+        .tarjeta img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .descripcion {
+            padding: 15px;
+            color: #6a1b9a;
+        }
+
+        section.cuidados {
+            background-color: #ffe3ed;
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            border-left: 5px solid #c7597e;
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #e996b2;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #cc97aa;
+        }
+
+        footer {
+            background-color: #f8bbd0;
+            text-align: center;
+            padding: 10px;
+            color: #e081c9;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
+
 <body>
     <header>
-        <!-- Título principal de la página -->
         <h1>Emergencias para cada Mascota</h1>
-        <!-- Descripción breve sobre la importancia del cuidado de las mascotas en emergencias -->
         <p>Obtén información importante sobre el cuidado de tus mascotas ante emergencias.</p>
-
-        <!-- Texto explicativo sobre la importancia de tener un plan para el cuidado de las mascotas -->
         <p>Las mascotas son miembros importantes de nuestras familias, y su bienestar debe ser una prioridad. En situaciones de emergencia, como desastres naturales o accidentes, es fundamental tener un plan de cuidados para garantizar su seguridad y salud. Esto incluye mantener a mano suministros básicos como comida, agua, medicinas y un botiquín de primeros auxilios. Además, es importante conocer los servicios veterinarios de emergencia y estar preparados para evacuaciones rápidas. Proteger a nuestras mascotas en momentos críticos no solo las salva, sino que también nos da paz mental sabiendo que hemos hecho todo lo posible por su bienestar.</p>
     </header>
 
     <nav class="menu">
-        <!-- Menú de navegación con enlaces a diferentes secciones de la página -->
         <a href="#perros">Perros</a>
         <a href="#gatos">Gatos</a>
         <a href="#conejos">Conejos</a>
@@ -32,7 +129,6 @@
     </nav>
 
     <div class="galeria">
-        <!-- Tarjeta para la sección de perros -->
         <div class="tarjeta">
             <img src="P.jpg" alt="Perro feliz">
             <div class="descripcion">
@@ -41,15 +137,15 @@
                     temperamento y habilidades. Los perros poseen un agudo sentido
                     del olfato y el oído, lo que los hace ideales para tareas como 
                     búsqueda y rescate, detección de sustancias y asistencia a
-                    personas con discapacidad. </p>
+                    personas con discapacidad.</p>
 
-                <p>Son animales sociales que requieren cuidado, ejercicio y atención
+                    <p>Son animales sociales que requieren cuidado, ejercicio y atención
                      para mantenerse sanos y felices. Su capacidad de formar vínculos
                       con los humanos los ha convertido en una de las especies más 
                       queridas y cercanas al hombre.</p>
             </div>
         </div>
-        <!-- Tarjeta para la sección de gatos -->
+
         <div class="tarjeta">
             <img src="G.jpg" alt="Gato jugando">
             <div class="descripcion">
@@ -59,6 +155,7 @@
                      por su agilidad, independencia y sentidos altamente desarrollados.
                       Poseen cuerpos flexibles, garras retráctiles y una excelente visión 
                       nocturna, lo que los convierte en cazadores eficaces. </p>
+
                 <p>
                     A lo largo de la historia, los gatos han sido valorados por su capacidad
                      para controlar plagas y por su compañía. Su comportamiento varía, pero en general
@@ -66,7 +163,7 @@
                       crean fuertes lazos con sus dueños.</p>
             </div>
         </div>
-        <!-- Tarjeta para la sección de conejos -->
+
         <div class="tarjeta">
             <img src="C.jpg" alt="Conejo esponjoso">
             <div class="descripcion">
@@ -74,7 +171,8 @@
                 <p>Los conejos (Oryctolagus cuniculus) son mamíferos herbívoros de la familia 
                     Leporidae, conocidos por sus largas orejas, patas traseras poderosas y 
                     dientes en constante crecimiento. Son animales ágiles y veloces, capaces de 
-                    dar grandes saltos gracias a su musculatura adaptada para la huida. </p>
+                    dar grandes saltos gracias a su musculatura adaptada para la huida.</p>
+
                 <p>
                     Existen muchas razas de conejos, desde los pequeños conejos enanos hasta 
                     los grandes conejos gigantes de Flandes. Son animales sociales que pueden 
@@ -83,33 +181,29 @@
                     depredadores.</p>
             </div>
         </div>
-        <!-- Tarjeta para la sección de lors-->
+
         <div class="tarjeta">
             <img src="Loro.jpg" alt="Loro Exclusivo">
             <div class="descripcion">
                 <h3>Loros</h3>
-                <p>Los loros son aves pertenecientes al orden Psittaciformes, conocidos por su plumaje brillante, su pico curvo y su gran capacidad vocal. Existen más de 350 especies de loros distribuidas principalmente en zonas tropicales de América, África, Asia y Oceanía. Muchas de estas aves pueden imitar sonidos del entorno, e incluso el habla humana, lo que las hace especialmente atractivas como mascotas. Su inteligencia, capacidad de aprendizaje y comportamiento social las convierten en animales fascinantes tanto en libertad como en cautiverio.
-                </p>
+                <p>Los loros son aves pertenecientes al orden Psittaciformes, conocidos por su plumaje brillante, su pico curvo y su gran capacidad vocal. Existen más de 350 especies de loros distribuidas principalmente en zonas tropicales de América, África, Asia y Oceanía. Muchas de estas aves pueden imitar sonidos del entorno, e incluso el habla humana, lo que las hace especialmente atractivas como mascotas. Su inteligencia, capacidad de aprendizaje y comportamiento social las convierten en animales fascinantes tanto en libertad como en cautiverio.</p>
             </div>
         </div>
-    
 
-     <div class="tarjeta">
+        <div class="tarjeta">
             <img src="Gallina.jpg" alt="Gallinas lindas">
             <div class="descripcion">
                 <h3>Gallinas</h3>
-                <p>Las gallinas son aves domésticas muy comunes en todo el mundo, criadas principalmente por sus huevos y carne. Pertenecen a la especie *Gallus gallus domesticus* y se cree que descienden del gallo rojo salvaje del sudeste asiático. Son animales sociables, inteligentes y capaces de establecer jerarquías dentro del grupo, conocidas como el “orden de picoteo”.
-              </p>
+                <p>Las gallinas son aves domésticas muy comunes en todo el mundo, criadas principalmente por sus huevos y carne. Pertenecen a la especie Gallus gallus domesticus y se cree que descienden del gallo rojo salvaje del sudeste asiático. Son animales sociables, inteligentes y capaces de establecer jerarquías dentro del grupo, conocidas como el “orden de picoteo”.</p>
             </div>
         </div>
-        </div>
+    </div>
 
-
-    <!-- Sección de cuidados básicos para perros -->
+    <!-- Secciones de cuidados -->
     <section id="perros" class="cuidados">
         <h2 style="text-align: center;">Cuidados Básicos para Perros</h2> 
-        <h3>Evaluación de la situación</h3>
-        <p>Mantén la calma y evita que el perro entre en pánico.</p>
+        <!-- contenido reducido por brevedad -->
+         <p>Mantén la calma y evita que el perro entre en pánico.</p>
         <p>Usa una voz tranquila y movimientos suaves.</p>
         <p>Si es necesario, coloca un bozal (excepto si tiene dificultad para respirar o está vomitando).</p>
         
@@ -127,12 +221,10 @@
         <p>Si ha ingerido algo tóxico (chocolate, veneno, medicamentos), lleva el envase al veterinario.</p>
         <p>Ofrécele carbón activado si el veterinario lo aprueba.</p>
     </section>
-    
-    <!-- Sección de cuidados básicos para gatos -->
+
     <section id="gatos" class="cuidados">
         <h2 style="text-align: center;"> Cuidados Básicos para Gatos</h2>
-        <h3>Evaluación de la situación</h3>
-        <p>Mantén la calma y evita movimientos bruscos.</p>
+         <p>Mantén la calma y evita movimientos bruscos.</p>
         <p>Usa una toalla o manta para manejar al gato si está agresivo o asustado.</p>
         <p>Si es necesario, coloca un bozal (nunca si tiene problemas respiratorios).</p>
 
@@ -152,10 +244,8 @@
         <p>Si no puedes sacarlo, realiza la maniobra de Heimlich para gatos: coloca ambas manos en su abdomen y presiona con cuidado hacia arriba.</p>
     </section>
 
-    <!-- Sección de cuidados básicos para conejos -->
     <section id="conejos" class="cuidados">
         <h2 style="text-align: center;"> Cuidados Básicos para Conejos</h2>
-        <h3>Evaluación de la situación</h3>
         <p>Mantén la calma y maneja a tu conejo con suavidad.</p>
         <p>Si está asustado, envuélvelo en una manta sin apretar demasiado.</p>
         <p>Revisa signos vitales: frecuencia respiratoria, temperatura y pulso.</p>
@@ -176,12 +266,10 @@
         <p>Ofrécele agua en pequeñas cantidades.</p>
         <p>No lo sumerjas en agua fría, puede causar shock.</p>
     </section>
-    
-    <!-- Sección de cuidados básicos para loros -->
+
     <section id="Loros" class="cuidados">
-        <h2 style="text-align: center;">Cuidados Básicos para loros</h2>
-        <h3>Evaluación del estado del Loro</h3>
-        <p>Jaula adecuada</p>
+        <h2 style="text-align: center;">Cuidados Básicos para Loros</h2>
+         <p>Jaula adecuada</p>
         <p>Debe ser amplia, segura y fácil de limpiar.</p>
         <p>Colócala en un lugar con buena iluminación, sin corrientes de aire ni humo.</p>
         <p>Incluye perchas de distintos grosores y materiales.</p>
@@ -202,10 +290,8 @@
         <p>Puedes darle baños o rociarlo con agua para cuidar su plumaje.</p>
     </section>
 
-    <!-- Sección de cuidados básicos para Gallinas -->
     <section id="Gallinas" class="cuidados">
         <h2 style="text-align: center;">Cuidados Básicos para Gallinas</h2>
-        <h3>Evaluación del estado de la gallina</h3>
         <p>Heridas leves</p>
         <p>Limpia la zona con agua tibia y un desinfectante suave (como yodo diluido).</p>
         <p>Aplica una pomada antibiótica si es necesario.</p>
@@ -226,14 +312,9 @@
         <p>Lubrica suavemente la zona de la cloaca con aceite vegetal.</p>
         <p>Si no expulsa el huevo, acude al veterinario urgentemente.</p>
     </section>
-    
-    
-    <!-- Botón para volver al inicio -->
-    <div>
-        <a href="./index.html" class="btn">Volver al inicio</a>
-    </div>
 
-    <!-- Pie de página con derechos de autor -->
+    <a href="./index.html" class="btn">Volver al inicio</a>
+
     <footer>
         © 2025 Emergencias Mascotas - Todos los derechos reservados.
     </footer>
