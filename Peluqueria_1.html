@@ -159,6 +159,17 @@
     }
   });
 </script>
+    <script>
+  // Esta función muestra el formulario y asigna el nombre de la peluquería
+  window.showBookingForm = function(peluqueria) {
+    document.querySelector('.booking-section').style.display = 'block';
+    document.getElementById('peluqueriaName').innerText = peluqueria;
+
+    // Desplazar suavemente al formulario
+    document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' });
+  };
+</script>
+
 
 </body>
 </html> 
