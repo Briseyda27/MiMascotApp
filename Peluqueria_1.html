@@ -108,29 +108,57 @@
     <!-- Enlace a Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        function showBookingForm(peluqueria) {
-            document.querySelector('.booking-section').style.display = 'block';
-            document.getElementById('peluqueriaName').innerText = peluqueria;
+    <script type="module">
+  // Importa Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-            // Desplazar a la sección del formulario
-            document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' });
-        }
+  // Tu configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyCOJNIAclxxdk6DqxOP-93fRTE5HMxMkG0",
+    authDomain: "peluquerias-191f9.firebaseapp.com",
+    projectId: "peluquerias-191f9",
+    storageBucket: "peluquerias-191f9.appspot.com",
+    messagingSenderId: "631546423042",
+    appId: "1:631546423042:web:17eae6fb86d0b54c02441b"
+  };
 
-        function validateForm() {
-            const petName = document.getElementById('petName').value.trim();
-            const service = document.getElementById('service').value;
-            const date = document.getElementById('date').value;
+  // Inicializa Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-            if (!petName || !service || !date) {
-                alert("Por favor, completa todos los campos requeridos.");
-                return false; // Evita el envío del formulario
-            }
+  // Accede al formulario
+  const form = document.getElementById('bookingForm');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-            // Si todo está bien, puedes enviar el formulario
-            alert("Cita reservada con éxito!");
-            return true; // Permite el envío del formulario
-        }
-    </script>
+    const nombreMascota = document.getElementById('petName').value.trim();
+    const servicio = document.getElementById('service').value;
+    const fechaHora = document.getElementById('date').value;
+    const peluqueria = document.getElementById('peluqueriaName').innerText;
+
+    if (!nombreMascota || !servicio || !fechaHora) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "citasPeluquerias"), {
+        nombre: nombreMascota,
+        servicio: servicio,
+        fechaHora: fechaHora,
+        peluqueria: peluqueria
+      });
+
+      alert("✅ Cita reservada con éxito en " + peluqueria);
+      form.reset();
+      document.querySelector('.booking-section').style.display = 'none';
+    } catch (error) {
+      console.error("Error al registrar la cita:", error);
+      alert("❌ Hubo un error al registrar la cita. Inténtalo de nuevo.");
+    }
+  });
+</script>
+
 </body>
 </html> 
