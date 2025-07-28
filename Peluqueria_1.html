@@ -81,114 +81,97 @@
         </div>
     </section>
 
-    <!-- Reservar Cita -->
-    <section id="formulario">
-        <section id="booking" class="container booking-section" style="display: none;">
-            <h2 class="text-center mb-4">Reserva tu Cita en <span id="peluqueriaName"></span></h2>
-            <form id="bookingForm" onsubmit="return validateForm()">
-                <div class="mb-3">
-                    <label for="userName" class="form-label">Tu nombre completo</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="userName"
-                        placeholder="Ej. Briseyda Flores"
-                        required
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="service" class="form-label">Selecciona el servicio</label>
-                    <select class="form-select" id="service" required>
-                        <option value="">Selecciona un servicio</option>
-                        <option value="Baño">Baño para Mascotas</option>
-                        <option value="Corte">Corte de Pelo</option>
-                        <option value="Manicure">Manicure y Pedicure</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="date" class="form-label">Fecha y Hora</label>
-                    <input type="datetime-local" class="form-control" id="date" required />
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Reservar Cita</button>
-            </form>
-            <div
-                id="successMessage"
-                class="alert alert-success mt-3 d-none"
-                role="alert"
-            >
-                ¡Tu cita fue reservada con éxito! Te esperamos.
-            </div>
-        </section>
-    </section>
+    <!-- Formulario de cita -->
+    <div class="card mt-5" id="booking" style="display: none;">
+      <div class="card-body">
+        <h3 class="card-title">Reservar cita en: <span id="peluqueriaName"></span></h3>
+        <form id="bookingForm" onsubmit="return validateForm()">
+          <div class="mb-3">
+            <label for="userName" class="form-label">Tu nombre:</label>
+            <input type="text" class="form-control" id="userName" required>
+          </div>
+          <div class="mb-3">
+            <label for="service" class="form-label">Servicio:</label>
+            <select class="form-select" id="service" required>
+              <option value="">Selecciona un servicio</option>
+              <option value="Baño">Baño</option>
+              <option value="Corte de pelo">Corte de pelo</option>
+              <option value="Spa">Spa</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Fecha y hora:</label>
+            <input type="datetime-local" class="form-control" id="date" required>
+          </div>
+          <button type="submit" class="btn btn-success">Confirmar cita</button>
+        </form>
+        <div class="alert alert-success mt-3 d-none" id="successMessage">
+          ¡Cita enviada exitosamente!
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        &copy; 2025 TODOPET | Todos los derechos reservados | Política de privacidad
-    </footer>
+  <!-- Firebase y script personalizado -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAo0gXKXC7u3fvfjFUoYSqTwr_kb0QVd_k",
+      authDomain: "pelu-a88b8.firebaseapp.com",
+      projectId: "pelu-a88b8",
+      storageBucket: "pelu-a88b8.firebasestorage.app",
+      messagingSenderId: "36302326379",
+      appId: "1:36302326379:web:53d524e0353e899624bf2e"
+    };
 
-    <!-- Firebase y lógica de reserva -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-      import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyAo0gXKXC7u3fvfjFUoYSqTwr_kb0QVd_k",
-        authDomain: "pelu-a88b8.firebaseapp.com",
-        projectId: "pelu-a88b8",
-        storageBucket: "pelu-a88b8.firebasestorage.app",
-        messagingSenderId: "36302326379",
-        appId: "1:36302326379:web:53d524e0353e899624bf2e",
-      };
+    let peluqueriaSeleccionada = "";
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+    // Mostrar el formulario
+    window.showBookingForm = function (peluqueriaId) {
+      peluqueriaSeleccionada = peluqueriaId;
+      document.getElementById("peluqueriaName").textContent = peluqueriaId;
+      document.getElementById("booking").style.display = "block";
+      window.scrollTo({ top: document.getElementById("booking").offsetTop, behavior: "smooth" });
+    };
 
-      let currentPeluqueria = "";
+    // Validar y enviar
+    window.validateForm = async function () {
+      const nombre = document.getElementById("userName").value.trim();
+      const servicio = document.getElementById("service").value.trim();
+      const fechaHora = document.getElementById("date").value;
 
-      window.showBookingForm = function (peluqueria) {
-        currentPeluqueria = peluqueria;
-        document.querySelector(".booking-section").style.display = "block";
-        document.getElementById("peluqueriaName").innerText = peluqueria;
-        document.getElementById("formulario").scrollIntoView({ behavior: "smooth" });
-      };
+      if (!nombre || !servicio || !fechaHora) {
+        alert("Por favor completa todos los campos.");
+        return false;
+      }
 
-      window.validateForm = async function () {
-        const userName = document.getElementById("userName").value.trim();
-        const service = document.getElementById("service").value;
-        const date = document.getElementById("date").value;
-        const successMessage = document.getElementById("successMessage");
+      try {
+        await addDoc(collection(db, "peluqueria_citas"), {
+          usuario: nombre,
+          servicio,
+          fechaHora,
+          peluqueria: peluqueriaSeleccionada
+        });
 
-        if (!userName || !service || !date || !currentPeluqueria) {
-          alert("Por favor, completa todos los campos requeridos.");
-          return false;
-        }
+        document.getElementById("successMessage").classList.remove("d-none");
 
-        try {
-          await addDoc(collection(db, "reservasPeluqueria"), {
-            peluqueria: currentPeluqueria,
-            nombreUsuario: userName,
-            servicio: service,
-            fechaHora: date,
-            timestamp: new Date(),
-          });
+        // Limpiar campos
+        document.getElementById("userName").value = "";
+        document.getElementById("service").value = "";
+        document.getElementById("date").value = "";
 
-          successMessage.classList.remove("d-none");
-          document.getElementById("bookingForm").reset();
-
-          setTimeout(() => {
-            successMessage.classList.add("d-none");
-          }, 5000);
-
-          return false;
-        } catch (error) {
-          console.error("Error al guardar la cita:", error);
-          alert("Hubo un error al guardar la cita. Intenta de nuevo.");
-          return false;
-        }
-      };
-    </script>
+        return false;
+      } catch (error) {
+        console.error("Error al enviar cita:", error);
+        alert("Ocurrió un error al guardar la cita.");
+        return false;
+      }
+    };
+  </script>
 </body>
 </html>
