@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Servicios de Peluquería y Baño para Mascotas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="PeluStyle.css">
-    <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="PeluStyle.css" />
+    <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg" />
 </head>
 <body>
 
@@ -14,13 +14,21 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Peluquería y Baño para Mascotas</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link"href="./index.html">Volver al Inicio</a>
+                        <a class="nav-link" href="./index.html">Volver al Inicio</a>
                     </li>
                 </ul>
             </div>
@@ -40,7 +48,7 @@
             <!-- Peluquería 1 -->
             <div class="col-md-4" id="Peluquería Canina El Estilo">
                 <div class="card service-card">
-                    <img src="P1.jpg" class="card-img-top" alt="Peluquería 1">
+                    <img src="P1.jpg" class="card-img-top" alt="Peluquería 1" />
                     <div class="card-body">
                         <h3 class="card-title">Peluquería Canina El Estilo</h3>
                         <p class="card-text">Ofrecemos baño, corte de pelo y manicura para todo tipo de perros.</p>
@@ -51,7 +59,7 @@
             <!-- Peluquería 2 -->
             <div class="col-md-4" id="Peluquería y Spa PetCare">
                 <div class="card service-card">
-                    <img src="P2.jpg" class="card-img-top" alt="Peluquería 2">
+                    <img src="P2.jpg" class="card-img-top" alt="Peluquería 2" />
                     <div class="card-body">
                         <h3 class="card-title">Peluquería y Spa PetCare</h3>
                         <p class="card-text">Servicio de baño, corte de pelo y cuidado facial para tu mascota.</p>
@@ -62,7 +70,7 @@
             <!-- Peluquería 3 -->
             <div class="col-md-4" id="Peluquería Casa de las Mascotas">
                 <div class="card service-card">
-                    <img src="P3.jpg" class="card-img-top" alt="Peluquería 3">
+                    <img src="P3.jpg" class="card-img-top" alt="Peluquería 3" />
                     <div class="card-body">
                         <h3 class="card-title">Peluquería Casa de las Mascotas</h3>
                         <p class="card-text">Especialistas en cuidado, belleza e higiene de gatos y perros.</p>
@@ -75,16 +83,21 @@
 
     <!-- Reservar Cita -->
     <section id="formulario">
-        <section id="booking" class="container booking-section" style="display: none;"> <!-- Sección para reservar citas -->
+        <section id="booking" class="container booking-section" style="display: none;">
             <h2 class="text-center mb-4">Reserva tu Cita en <span id="peluqueriaName"></span></h2>
-            <form id="bookingForm" onsubmit="return validateForm()"> <!-- Formulario para reservar cita -->
+            <form id="bookingForm" onsubmit="return validateForm()">
                 <div class="mb-3">
-                  <label for="userName" class="form-label">Tu nombre completo</label>
-<input type="text" class="form-control" id="userName" placeholder="Ej. Briseyda Flores" required>
-
+                    <label for="userName" class="form-label">Tu nombre completo</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="userName"
+                        placeholder="Ej. Briseyda Flores"
+                        required
+                    />
                 </div>
                 <div class="mb-3">
-                    <label for="service" class="form-label">Selecciona el servicio</label> 
+                    <label for="service" class="form-label">Selecciona el servicio</label>
                     <select class="form-select" id="service" required>
                         <option value="">Selecciona un servicio</option>
                         <option value="Baño">Baño para Mascotas</option>
@@ -94,14 +107,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">Fecha y Hora</label>
-                    <input type="datetime-local" class="form-control" id="date" required>
+                    <input type="datetime-local" class="form-control" id="date" required />
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Reservar Cita</button>
             </form>
-            <div id="successMessage" class="alert alert-success mt-3 d-none" role="alert">
-  ¡Tu cita fue reservada con éxito! Te esperamos.
-</div>
-
+            <div
+                id="successMessage"
+                class="alert alert-success mt-3 d-none"
+                role="alert"
+            >
+                ¡Tu cita fue reservada con éxito! Te esperamos.
+            </div>
         </section>
     </section>
 
@@ -110,77 +126,69 @@
         &copy; 2025 TODOPET | Todos los derechos reservados | Política de privacidad
     </footer>
 
-    <!-- Enlace a Bootstrap JS -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Firebase y lógica de reserva -->
-<script type="module">
-  // Importar SDK de Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+    <!-- Firebase y lógica de reserva -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+      import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-  // Configuración de Firebase (tuya)
-  const firebaseConfig = {
-    apiKey: "AIzaSyAo0gXKXC7u3fvfjFUoYSqTwr_kb0QVd_k",
-    authDomain: "pelu-a88b8.firebaseapp.com",
-    projectId: "pelu-a88b8",
-    storageBucket: "pelu-a88b8.firebasestorage.app",
-    messagingSenderId: "36302326379",
-    appId: "1:36302326379:web:53d524e0353e899624bf2e"
-  };
+      const firebaseConfig = {
+        apiKey: "AIzaSyAo0gXKXC7u3fvfjFUoYSqTwr_kb0QVd_k",
+        authDomain: "pelu-a88b8.firebaseapp.com",
+        projectId: "pelu-a88b8",
+        storageBucket: "pelu-a88b8.firebasestorage.app",
+        messagingSenderId: "36302326379",
+        appId: "1:36302326379:web:53d524e0353e899624bf2e",
+      };
 
-  // Inicializar Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
-  // Variable para saber qué peluquería se seleccionó
-  let currentPeluqueria = null;
+      let currentPeluqueria = "";
 
-  // Mostrar formulario de reserva según la peluquería
-  window.showBookingForm = function(peluqueria) {
-    currentPeluqueria = peluqueria;
-    document.getElementById("bookingFormContainer").style.display = "block";
-  };
+      window.showBookingForm = function (peluqueria) {
+        currentPeluqueria = peluqueria;
+        document.querySelector(".booking-section").style.display = "block";
+        document.getElementById("peluqueriaName").innerText = peluqueria;
+        document.getElementById("formulario").scrollIntoView({ behavior: "smooth" });
+      };
 
-  // Validar y guardar datos
-  window.validateForm = async function () {
-    const userName = document.getElementById('userName').value.trim();
-    const service = document.getElementById('service').value;
-    const date = document.getElementById('date').value;
-    const successMessage = document.getElementById('successMessage');
+      window.validateForm = async function () {
+        const userName = document.getElementById("userName").value.trim();
+        const service = document.getElementById("service").value;
+        const date = document.getElementById("date").value;
+        const successMessage = document.getElementById("successMessage");
 
-    if (!userName || !service || !date || !currentPeluqueria) {
-      alert("Por favor, completa todos los campos requeridos.");
-      return false;
-    }
+        if (!userName || !service || !date || !currentPeluqueria) {
+          alert("Por favor, completa todos los campos requeridos.");
+          return false;
+        }
 
-    try {
-      await addDoc(collection(db, "reservasPeluqueria"), {
-        peluqueria: currentPeluqueria,
-        nombreUsuario: userName,
-        servicio: service,
-        fechaHora: date,
-        timestamp: new Date()
-      });
+        try {
+          await addDoc(collection(db, "reservasPeluqueria"), {
+            peluqueria: currentPeluqueria,
+            nombreUsuario: userName,
+            servicio: service,
+            fechaHora: date,
+            timestamp: new Date(),
+          });
 
-      // Mostrar mensaje de éxito
-      successMessage.classList.remove("d-none");
-      document.getElementById('bookingForm').reset();
+          successMessage.classList.remove("d-none");
+          document.getElementById("bookingForm").reset();
 
-      // Ocultar mensaje después de 5 segundos
-      setTimeout(() => {
-        successMessage.classList.add("d-none");
-      }, 5000);
+          setTimeout(() => {
+            successMessage.classList.add("d-none");
+          }, 5000);
 
-      return false;
-    } catch (error) {
-      console.error("Error al guardar la cita:", error);
-      alert("Hubo un error al guardar la cita. Intenta de nuevo.");
-      return false;
-    }
-  };
-</script>
-
-
+          return false;
+        } catch (error) {
+          console.error("Error al guardar la cita:", error);
+          alert("Hubo un error al guardar la cita. Intenta de nuevo.");
+          return false;
+        }
+      };
+    </script>
 </body>
 </html>
