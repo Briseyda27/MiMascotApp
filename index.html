@@ -12,6 +12,26 @@
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
 <body>
+    <!-- Modal del formulario -->
+<div id="formModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+  <form id="userForm" style="background: white; padding: 20px; border-radius: 10px; width: 300px;">
+    <h2>Por favor completa tus datos</h2>
+    <label>Nombre completo:</label><br>
+    <input type="text" name="nombre" required style="width: 100%; margin-bottom: 10px;"><br>
+    <label>Correo electrónico:</label><br>
+    <input type="email" name="correo" required style="width: 100%; margin-bottom: 20px;"><br>
+    <button type="submit" style="padding: 10px; width: 100%;">Ingresar</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("userForm").addEventListener("submit", function(e){
+    e.preventDefault(); // Evita el envío
+    // Aquí puedes guardar los datos, por ahora solo oculta el modal
+    document.getElementById("formModal").style.display = "none";
+  });
+</script>
            
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
