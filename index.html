@@ -42,8 +42,11 @@ background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; al
       return;
     }
 
-    // Si los campos están llenos, ocultamos el modal
+    // Oculta el formulario
     document.getElementById("formModal").style.display = "none";
+
+    // ✅ Muestra la navbar y el contenido aplicando una clase al <body>
+    document.body.classList.add('acceso-activo');
   });
 </script>
            
