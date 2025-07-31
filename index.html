@@ -13,6 +13,7 @@
 </head>
 <body>
     <!-- Modal bloqueante -->
+<!-- Modal del formulario de acceso -->
 <div id="formModal">
   <form id="userForm">
     <h2>Por favor completa tus datos</h2>
@@ -24,27 +25,34 @@
   </form>
 </div>
 
-<!-- Script que valida e inicia -->
 <script>
-  document.getElementById("userForm").addEventListener("submit", function(e){
-    e.preventDefault();
+  // Espera que el DOM esté cargado
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("userForm");
+    const modal = document.getElementById("formModal");
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const correo = document.getElementById("correo").value.trim();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    if (nombre === "") {
-      alert("Debes ingresar tu nombre completo para continuar.");
-      return;
-    }
+      const nombre = document.getElementById("nombre").value.trim();
+      const correo = document.getElementById("correo").value.trim();
 
-    if (correo === "") {
-      alert("Debes ingresar tu correo electrónico para continuar.");
-      return;
-    }
+      if (nombre === "") {
+        alert("Debes ingresar tu nombre completo para continuar.");
+        return;
+      }
 
-    // Ocultar modal y permitir acceso al contenido
-    document.getElementById("formModal").style.display = "none";
-    document.body.classList.add('acceso-activo');
+      if (correo === "") {
+        alert("Debes ingresar tu correo electrónico para continuar.");
+        return;
+      }
+
+      // ✅ Ocultar el modal
+      modal.style.display = "none";
+
+      // ✅ Mostrar contenido activando clase al body
+      document.body.classList.add("acceso-activo");
+    });
   });
 </script>
            
