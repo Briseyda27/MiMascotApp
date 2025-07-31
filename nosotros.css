@@ -118,7 +118,7 @@ footer {
 
 /* Estilo del formulario */
 #userForm {
-  background: white;
+  background: #fce4ec; /* rosado pastel */
   padding: 20px;
   border-radius: 10px;
   width: 300px;
@@ -152,4 +152,13 @@ footer {
 
 #userForm button:hover {
   background-color: #c82333;
+}
+/* Oculta el navbar (menú) al principio */
+nav.navbar {
+  display: none;
+}
+
+/* Muestra el navbar cuando se inicia sesión */
+body.acceso-activo nav.navbar {
+  display: block;
 }
