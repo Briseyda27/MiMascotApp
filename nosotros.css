@@ -95,7 +95,8 @@ strong {
     color: #e9862a;
 }
 
-    #formModal {
+    /* Fondo del formulario (pantalla completa, color anaranjado suave) */
+#formModal {
   position: fixed;
   top: 0;
   left: 0;
@@ -106,8 +107,9 @@ strong {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-    }
 }
+
+/* Estilo del formulario rosado */
 #userForm {
   background: #fce4ec; /* rosado pastel */
   padding: 20px;
@@ -155,14 +157,14 @@ body.acceso-activo nav.navbar {
   display: block;
 }
 
-/* Oculta todo el contenido principal y footer al inicio */
+/* Oculta todo el contenido principal y el footer al inicio */
 .main-content,
 .container,
 footer {
   display: none;
 }
 
-/* Muestra el contenido cuando ya accedió */
+/* Muestra el contenido una vez se ha accedido */
 body.acceso-activo .main-content,
 body.acceso-activo .container,
 body.acceso-activo footer {
