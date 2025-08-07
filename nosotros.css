@@ -18,7 +18,7 @@ body {
 }
 
 .navbar-brand {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
 }   
 
@@ -170,3 +170,4 @@ body.acceso-activo .container,
 body.acceso-activo footer {
   display: block;
 }
+
