@@ -11,6 +11,42 @@
     <!-- Icono de la página -->
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
+<script>
+function verificarAcceso() {
+    const inicioPrueba = localStorage.getItem("inicioPrueba");
+    const hoy = new Date();
+
+    if (!inicioPrueba) {
+        localStorage.setItem("inicioPrueba", hoy.toISOString());
+        mostrarContenido();
+    } else {
+        const fechaInicio = new Date(inicioPrueba);
+        const diferenciaDias = Math.floor((hoy - fechaInicio) / (1000 * 60 * 60 * 24));
+
+        if (diferenciaDias < 7) {
+            mostrarContenido();
+            const diasRestantes = 7 - diferenciaDias;
+            alert("Tu prueba gratuita termina en " + diasRestantes + " día(s).");
+        } else {
+            mostrarPago();
+        }
+    }
+}
+
+function mostrarContenido() {
+    document.getElementById("contenido").style.display = "block";
+    document.getElementById("pago").style.display = "none";
+}
+
+function mostrarPago() {
+    document.getElementById("contenido").style.display = "none";
+    document.getElementById("pago").style.display = "block";
+}
+
+
+window.onload = verificarAcceso;
+</script>
+
 <body>
     <!-- Modal bloqueante -->
 <!-- Modal del formulario de acceso -->
@@ -170,6 +206,25 @@
                 que las personas acceden a información y servicios para sus mascotas, contribuyendo a una sociedad más consciente
                  y responsable con sus animales de compañía.</p>
         </section>
+        <div id="contenido" style="display:none;">
+</div>
+
+<div id="pago" style="display:none; text-align:center; padding: 50px;">
+    <h2>Tu prueba gratuita ha terminado</h2>
+    <p>Para continuar disfrutando de nuestros servicios, realiza el pago a continuación.</p>
+    
+    <button onclick="realizarPago()">Pagar $4.99</button>
+</div>
+
+<script>
+
+function realizarPago() {
+    alert("Gracias por tu pago. Acceso desbloqueado.");
+    localStorage.setItem("pagoRealizado", "true");
+    mostrarContenido();
+}
+</script>
+
     </div>
     <!-- Pie de página -->
     <footer>
@@ -181,3 +236,4 @@
     </script>
 </body>
 </html>
+
