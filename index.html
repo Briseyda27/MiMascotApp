@@ -11,41 +11,48 @@
     <!-- Icono de la página -->
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
-<script>
-function verificarAcceso() {
-    const inicioPrueba = localStorage.getItem("inicioPrueba");
-    const hoy = new Date();
+<script>  
+  // Espera que el DOM esté cargado  
+  document.addEventListener("DOMContentLoaded", function () {  
 
-    if (!inicioPrueba) {
-        localStorage.setItem("inicioPrueba", hoy.toISOString());
-        mostrarContenido();
-    } else {
-        const fechaInicio = new Date(inicioPrueba);
-        const diferenciaDias = Math.floor((hoy - fechaInicio) / (1000 * 60 * 60 * 24));
-
-        if (diferenciaDias < 7) {
-            mostrarContenido();
-            const diasRestantes = 7 - diferenciaDias;
-            alert("Tu prueba gratuita termina en " + diasRestantes + " día(s).");
-        } else {
-            mostrarPago();
-        }
+    // 🔹 Verificar si ya se mostró antes
+    if (localStorage.getItem("formularioMostrado") === "true") {
+      document.getElementById("formModal").style.display = "none";
+      document.body.classList.add("acceso-activo");
+      return; // Evita que vuelva a pedir datos
     }
-}
 
-function mostrarContenido() {
-    document.getElementById("contenido").style.display = "block";
-    document.getElementById("pago").style.display = "none";
-}
+    const form = document.getElementById("userForm");  
+    const modal = document.getElementById("formModal");  
+  
+    form.addEventListener("submit", function (e) {  
+      e.preventDefault();  
+  
+      const nombre = document.getElementById("nombre").value.trim();  
+      const correo = document.getElementById("correo").value.trim();  
+  
+      if (nombre === "") {  
+        alert("Debes ingresar tu nombre completo para continuar.");  
+        return;  
+      }  
+  
+      if (correo === "") {  
+        alert("Debes ingresar tu correo electrónico para continuar.");  
+        return;  
+      }  
 
-function mostrarPago() {
-    document.getElementById("contenido").style.display = "none";
-    document.getElementById("pago").style.display = "block";
-}
-
-
-window.onload = verificarAcceso;
+      // ✅ Guardar que ya se completó
+      localStorage.setItem("formularioMostrado", "true");
+  
+      // ✅ Ocultar el modal  
+      modal.style.display = "none";  
+  
+      // ✅ Mostrar contenido activando clase al body  
+      document.body.classList.add("acceso-activo");  
+    });  
+  });  
 </script>
+
 
 <body>
     <!-- Modal bloqueante -->
@@ -246,6 +253,7 @@ function realizarPago() {
     </script>
 </body>
 </html>
+
 
 
 
