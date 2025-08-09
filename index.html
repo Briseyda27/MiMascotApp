@@ -235,41 +235,7 @@ function realizarPago() {
 
     </script>
 </body>
-    <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Revisar si ya se completó el formulario antes
-    if (localStorage.getItem("formularioCompletado") === "true") {
-      document.body.classList.add("acceso-activo");
-      document.getElementById("formModal").style.display = "none";
-    } else {
-      document.getElementById("formModal").style.display = "flex";
-    }
-
-    // Manejar envío del formulario
-    document.getElementById("userForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const nombre = document.getElementById("nombre").value.trim();
-      const correo = document.getElementById("correo").value.trim();
-
-      if (nombre === "") {
-        alert("Debes ingresar tu nombre completo para continuar.");
-        return;
-      }
-      if (correo === "") {
-        alert("Debes ingresar tu correo electrónico para continuar.");
-        return;
-      }
-
-      // Guardar en localStorage para que no vuelva a aparecer
-      localStorage.setItem("formularioCompletado", "true");
-
-      // Ocultar modal y mostrar contenido
-      document.getElementById("formModal").style.display = "none";
-      document.body.classList.add("acceso-activo");
-    });
-  });
-    </script>
 </html>
+
 
 
