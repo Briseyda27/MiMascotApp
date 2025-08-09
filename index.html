@@ -63,6 +63,20 @@ window.onload = verificarAcceso;
 
 <script>
   // Espera que el DOM esté cargado
+    window.onload = function() {
+    const formularioCompletado = localStorage.getItem("formularioCompletado");
+    const modal = document.getElementById("formModal");
+
+    if (formularioCompletado === "true") {
+        // Oculta modal si ya completó formulario
+        if (modal) modal.style.display = "none";
+        // También activa contenido si usas esa clase
+        document.body.classList.add("acceso-activo");
+    } else {
+        // Muestra modal si no ha completado
+        if (modal) modal.style.display = "block";
+    }
+};
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("userForm");
     const modal = document.getElementById("formModal");
@@ -88,6 +102,8 @@ window.onload = verificarAcceso;
 
       // ✅ Mostrar contenido activando clase al body
       document.body.classList.add("acceso-activo");
+        localStorage.setItem("formularioCompletado", "true");
+  
     });
   });
 </script>
@@ -236,6 +252,7 @@ function realizarPago() {
     </script>
 </body>
 </html>
+
 
 
 
