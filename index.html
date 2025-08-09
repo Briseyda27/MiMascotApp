@@ -61,51 +61,45 @@ window.onload = verificarAcceso;
   </form>
 </div>
 
-<script>
-  // Espera que el DOM esté cargado
-    window.onload = function() {
-    const formularioCompletado = localStorage.getItem("formularioCompletado");
-    const modal = document.getElementById("formModal");
-
-    if (formularioCompletado === "true") {
-        // Oculta modal si ya completó formulario
-        if (modal) modal.style.display = "none";
-        // También activa contenido si usas esa clase
-        document.body.classList.add("acceso-activo");
-    } else {
-        // Muestra modal si no ha completado
-        if (modal) modal.style.display = "block";
-    }
-};
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("userForm");
-    const modal = document.getElementById("formModal");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const nombre = document.getElementById("nombre").value.trim();
-      const correo = document.getElementById("correo").value.trim();
-
-      if (nombre === "") {
-        alert("Debes ingresar tu nombre completo para continuar.");
-        return;
-      }
-
-      if (correo === "") {
-        alert("Debes ingresar tu correo electrónico para continuar.");
-        return;
-      }
-
-      // ✅ Ocultar el modal
-      modal.style.display = "none";
-
-      // ✅ Mostrar contenido activando clase al body
+<script>  
+  // Espera que el DOM esté cargado  
+  document.addEventListener("DOMContentLoaded", function () {  
+    // 🔹 Verificar si ya se mostró antes
+    if (localStorage.getItem("formularioMostrado") === "true") {
+      document.getElementById("formModal").style.display = "none";
       document.body.classList.add("acceso-activo");
-        localStorage.setItem("formularioCompletado", "true");
+      return; // Evita que el resto del código vuelva a pedir datos
+    }
+
+    const form = document.getElementById("userForm");  
+    const modal = document.getElementById("formModal");  
   
-    });
-  });
+    form.addEventListener("submit", function (e) {  
+      e.preventDefault();  
+  
+      const nombre = document.getElementById("nombre").value.trim();  
+      const correo = document.getElementById("correo").value.trim();  
+  
+      if (nombre === "") {  
+        alert("Debes ingresar tu nombre completo para continuar.");  
+        return;  
+      }  
+  
+      if (correo === "") {  
+        alert("Debes ingresar tu correo electrónico para continuar.");  
+        return;  
+      }  
+
+      // ✅ Guardar que ya se mostró
+      localStorage.setItem("formularioMostrado", "true");
+  
+      // ✅ Ocultar el modal  
+      modal.style.display = "none";  
+  
+      // ✅ Mostrar contenido activando clase al body  
+      document.body.classList.add("acceso-activo");  
+    });  
+  });  
 </script>
            
     <!-- Barra de navegación -->
@@ -252,6 +246,7 @@ function realizarPago() {
     </script>
 </body>
 </html>
+
 
 
 
