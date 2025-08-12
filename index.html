@@ -11,103 +11,72 @@
     <!-- Icono de la página -->
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
-<script>  
-  // Espera que el DOM esté cargado  
-  document.addEventListener("DOMContentLoaded", function () {  
-
-    // 🔹 Verificar si ya se mostró antes
-    if (localStorage.getItem("formularioMostrado") === "true") {
-      document.getElementById("formModal").style.display = "none";
-      document.body.classList.add("acceso-activo");
-      return; // Evita que vuelva a pedir datos
-    }
-
-    const form = document.getElementById("userForm");  
-    const modal = document.getElementById("formModal");  
-  
-    form.addEventListener("submit", function (e) {  
-      e.preventDefault();  
-  
-      const nombre = document.getElementById("nombre").value.trim();  
-      const correo = document.getElementById("correo").value.trim();  
-  
-      if (nombre === "") {  
-        alert("Debes ingresar tu nombre completo para continuar.");  
-        return;  
-      }  
-  
-      if (correo === "") {  
-        alert("Debes ingresar tu correo electrónico para continuar.");  
-        return;  
-      }  
-
-      // ✅ Guardar que ya se completó
-      localStorage.setItem("formularioMostrado", "true");
-  
-      // ✅ Ocultar el modal  
-      modal.style.display = "none";  
-  
-      // ✅ Mostrar contenido activando clase al body  
-      document.body.classList.add("acceso-activo");  
-    });  
-  });  
-</script>
-
-
 <body>
-    <!-- Modal bloqueante -->
-<!-- Modal del formulario de acceso -->
-<div id="formModal">
-  <form id="userForm">
-    <h2>Por favor completa tus datos</h2>
-    <label for="nombre">Nombre completo:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br>
-    <label for="correo">Correo electrónico:</label><br>
-    <input type="email" id="correo" name="correo" required><br>
-    <button type="submit">Ingresar</button>
-  </form>
-</div>
 
-<script>  
-  // Espera que el DOM esté cargado  
-  document.addEventListener("DOMContentLoaded", function () {  
-    // 🔹 Verificar si ya se mostró antes
-    if (localStorage.getItem("formularioMostrado") === "true") {
-      document.getElementById("formModal").style.display = "none";
-      document.body.classList.add("acceso-activo");
-      return; // Evita que el resto del código vuelva a pedir datos
-    }
+  <!-- 🔒 FORMULARIO DE INICIO DE SESIÓN -->
+  <div id="formModal">
+    <form id="userForm">
+      <h2>Por favor inicia sesión</h2>
 
-    const form = document.getElementById("userForm");  
-    const modal = document.getElementById("formModal");  
-  
-    form.addEventListener("submit", function (e) {  
-      e.preventDefault();  
-  
-      const nombre = document.getElementById("nombre").value.trim();  
-      const correo = document.getElementById("correo").value.trim();  
-  
-      if (nombre === "") {  
-        alert("Debes ingresar tu nombre completo para continuar.");  
-        return;  
-      }  
-  
-      if (correo === "") {  
-        alert("Debes ingresar tu correo electrónico para continuar.");  
-        return;  
-      }  
+      <label for="correo">Correo electrónico:</label><br />
+      <input type="email" id="correo" name="correo" required /><br />
 
-      // ✅ Guardar que ya se mostró
-      localStorage.setItem("formularioMostrado", "true");
+      <label for="password">Contraseña:</label><br />
+      <input type="password" id="password" name="password" required /><br />
+
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
+
+  <!-- 🔐 Script de Firebase Authentication -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDeF0B1wEupn4icVvAbdkhxl8pji53gfuY",
+      authDomain: "premium-34ee0.firebaseapp.com",
+      projectId: "premium-34ee0",
+      storageBucket: "premium-34ee0.firebasestorage.app",
+      messagingSenderId: "707778949824",
+      appId: "1:707778949824:web:7af4e01cba5d5021647325"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("userForm");
+      const modal = document.getElementById("formModal");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const correo = document.getElementById("correo").value.trim();
+        const password = document.getElementById("password").value;
+
+        if (!correo || !password) {
+          alert("Por favor completa todos los campos.");
+          return;
+        }
+
+        signInWithEmailAndPassword(auth, correo, password)
+          .then(() => {
+            alert("Inicio de sesión exitoso ✅");
+            modal.style.display = "none";
+            document.body.classList.add("acceso-activo");
+
+            const contenido = document.getElementById("contenido");
+            if (contenido) contenido.style.display = "block";
+          })
+          .catch((error) => {
+            alert("❌ Error al iniciar sesión: " + error.message);
+          });
+      });
+    });
+  </script>
+
   
-      // ✅ Ocultar el modal  
-      modal.style.display = "none";  
-  
-      // ✅ Mostrar contenido activando clase al body  
-      document.body.classList.add("acceso-activo");  
-    });  
-  });  
-</script>
            
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -253,6 +222,7 @@ function realizarPago() {
     </script>
 </body>
 </html>
+
 
 
 
