@@ -12,11 +12,14 @@
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
 <script>  
+  // Espera que el DOM esté cargado  
   document.addEventListener("DOMContentLoaded", function () {  
+
+    // 🔹 Verificar si ya se mostró antes
     if (localStorage.getItem("formularioMostrado") === "true") {
       document.getElementById("formModal").style.display = "none";
       document.body.classList.add("acceso-activo");
-      return;
+      return; // Evita que vuelva a pedir datos
     }
 
     const form = document.getElementById("userForm");  
@@ -38,14 +41,74 @@
         return;  
       }  
 
+      // ✅ Guardar que ya se completó
       localStorage.setItem("formularioMostrado", "true");
   
+      // ✅ Ocultar el modal  
       modal.style.display = "none";  
+  
+      // ✅ Mostrar contenido activando clase al body  
       document.body.classList.add("acceso-activo");  
     });  
   });  
 </script>
 
+
+<body>
+    <!-- Modal bloqueante -->
+<!-- Modal del formulario de acceso -->
+<div id="formModal">
+  <form id="userForm">
+    <h2>Por favor completa tus datos</h2>
+    <label for="nombre">Nombre completo:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br>
+    <label for="correo">Correo electrónico:</label><br>
+    <input type="email" id="correo" name="correo" required><br>
+    <button type="submit">Ingresar</button>
+  </form>
+</div>
+
+<script>  
+  // Espera que el DOM esté cargado  
+  document.addEventListener("DOMContentLoaded", function () {  
+    // 🔹 Verificar si ya se mostró antes
+    if (localStorage.getItem("formularioMostrado") === "true") {
+      document.getElementById("formModal").style.display = "none";
+      document.body.classList.add("acceso-activo");
+      return; // Evita que el resto del código vuelva a pedir datos
+    }
+
+    const form = document.getElementById("userForm");  
+    const modal = document.getElementById("formModal");  
+  
+    form.addEventListener("submit", function (e) {  
+      e.preventDefault();  
+  
+      const nombre = document.getElementById("nombre").value.trim();  
+      const correo = document.getElementById("correo").value.trim();  
+  
+      if (nombre === "") {  
+        alert("Debes ingresar tu nombre completo para continuar.");  
+        return;  
+      }  
+  
+      if (correo === "") {  
+        alert("Debes ingresar tu correo electrónico para continuar.");  
+        return;  
+      }  
+
+      // ✅ Guardar que ya se mostró
+      localStorage.setItem("formularioMostrado", "true");
+  
+      // ✅ Ocultar el modal  
+      modal.style.display = "none";  
+  
+      // ✅ Mostrar contenido activando clase al body  
+      document.body.classList.add("acceso-activo");  
+    });  
+  });  
+</script>
+           
 <body>
 <!-- Modal del formulario de acceso -->
 <div id="formModal">
@@ -231,3 +294,4 @@
 
 </body>
 </html>
+
