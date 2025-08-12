@@ -24,56 +24,54 @@
     </form>
   </div>
 
-  <!-- Scripts de Firebase -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-    // Configuración de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyDeF0B1wEupn4icVvAbdkhxl8pji53gfuY",
-      authDomain: "premium-34ee0.firebaseapp.com",
-      projectId: "premium-34ee0",
-      storageBucket: "premium-34ee0.firebasestorage.app",
-      messagingSenderId: "707778949824",
-      appId: "1:707778949824:web:7af4e01cba5d5021647325"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyDeF0B1wEupn4icVvAbdkhxl8pji53gfuY",
+    authDomain: "premium-34ee0.firebaseapp.com",
+    projectId: "premium-34ee0",
+    storageBucket: "premium-34ee0.appspot.com", // CORREGIDO
+    messagingSenderId: "707778949824",
+    appId: "1:707778949824:web:7af4e01cba5d5021647325"
+  };
 
-    // Inicializar Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-    const modal = document.getElementById("formModal");
-    const form = document.getElementById("userForm");
+  console.log("Firebase conectado:", app.name);
 
-    // Detectar si hay sesión activa
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        modal.style.display = "none";
-        document.body.classList.add("acceso-activo");
+  const modal = document.getElementById("formModal");
+  const form = document.getElementById("userForm");
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      modal.style.display = "none";
+      document.body.classList.add("acceso-activo");
+    } else {
+      modal.style.display = "block";
+      document.body.classList.remove("acceso-activo");
+    }
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const correo = document.getElementById("correo").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    try {
+      await signInWithEmailAndPassword(auth, correo, password);
+    } catch (error) {
+      if (error.code === "auth/user-not-found") {
+        await createUserWithEmailAndPassword(auth, correo, password);
       } else {
-        modal.style.display = "block";
-        document.body.classList.remove("acceso-activo");
+        alert("Error: " + error.code + " - " + error.message); // Mensaje detallado
       }
-    });
+    }
+  });
+</script>
 
-    // Manejar el inicio de sesión / registro
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const correo = document.getElementById("correo").value.trim();
-      const password = document.getElementById("password").value.trim();
-
-      try {
-        await signInWithEmailAndPassword(auth, correo, password);
-      } catch (error) {
-        if (error.code === "auth/user-not-found") {
-          await createUserWithEmailAndPassword(auth, correo, password);
-        } else {
-          alert("Error: " + error.message);
-        }
-      }
-    });
-  </script>
 </body>
            
 <!-- Barra de navegación -->
@@ -270,6 +268,7 @@
 
 </body>
 </html>
+
 
 
 
