@@ -11,83 +11,70 @@
     <!-- Icono de la página -->
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
-<script>  
-   <!-- Modal bloqueante -->
-<div id="formModal">
-  <form id="userForm">
-    <h2>Por favor completa tus datos</h2>
+<body>
+  <!-- Modal bloqueante -->
+  <div id="formModal">
+    <form id="userForm">
+      <h2>Por favor completa tus datos</h2>
+      <label for="correo">Correo electrónico:</label><br>
+      <input type="email" id="correo" name="correo" required><br>
+      <label for="password">Contraseña:</label><br>
+      <input type="password" id="password" name="password" required><br>
+      <button type="submit">Ingresar</button>
+    </form>
+  </div>
 
-    <label for="correo">Correo electrónico:</label><br>
-    <input type="email" id="correo" name="correo" required><br>
+  <!-- Scripts de Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-    <label for="contrasena">Contraseña:</label><br>
-    <input type="password" id="contrasena" name="contrasena" required><br>
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDeF0B1wEupn4icVvAbdkhxl8pji53gfuY",
+      authDomain: "premium-34ee0.firebaseapp.com",
+      projectId: "premium-34ee0",
+      storageBucket: "premium-34ee0.firebasestorage.app",
+      messagingSenderId: "707778949824",
+      appId: "1:707778949824:web:7af4e01cba5d5021647325"
+    };
 
-    <button type="submit">Ingresar</button>
-  </form>
-</div>
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-<script type="module">
-  // Importar funciones necesarias de Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+    const modal = document.getElementById("formModal");
+    const form = document.getElementById("userForm");
 
-  // Configuración de Firebase (la tuya)
-  const firebaseConfig = {
-    apiKey: "AIzaSyDeF0B1wEupn4icVvAbdkhxl8pji53gfuY",
-    authDomain: "premium-34ee0.firebaseapp.com",
-    projectId: "premium-34ee0",
-    storageBucket: "premium-34ee0.firebasestorage.app",
-    messagingSenderId: "707778949824",
-    appId: "1:707778949824:web:7af4e01cba5d5021647325"
-  };
-
-  // Inicializar Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  const modal = document.getElementById("formModal");
-  const form = document.getElementById("userForm");
-
-  // Controlar acceso según estado de sesión
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      modal.style.display = "none";
-      document.body.classList.add("acceso-activo");
-    } else {
-      modal.style.display = "block";
-      document.body.classList.remove("acceso-activo");
-    }
-  });
-
-  // Manejar inicio/registro
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const correo = document.getElementById("correo").value.trim();
-    const contrasena = document.getElementById("contrasena").value.trim();
-
-    if (!correo || !contrasena) {
-      alert("Debes ingresar correo y contraseña para continuar.");
-      return;
-    }
-
-    try {
-      // Intentar iniciar sesión
-      await signInWithEmailAndPassword(auth, correo, contrasena);
-      console.log("✅ Sesión iniciada");
-    } catch (error) {
-      if (error.code === "auth/user-not-found") {
-        // Si no existe, lo creamos
-        await createUserWithEmailAndPassword(auth, correo, contrasena);
-        console.log("✅ Usuario creado e iniciado");
+    // Detectar si hay sesión activa
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        modal.style.display = "none";
+        document.body.classList.add("acceso-activo");
       } else {
-        console.error("❌ Error:", error.message);
-        alert("Error: " + error.message);
+        modal.style.display = "block";
+        document.body.classList.remove("acceso-activo");
       }
-    }
-  });
-</script>
+    });
+
+    // Manejar el inicio de sesión / registro
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const correo = document.getElementById("correo").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      try {
+        await signInWithEmailAndPassword(auth, correo, password);
+      } catch (error) {
+        if (error.code === "auth/user-not-found") {
+          await createUserWithEmailAndPassword(auth, correo, password);
+        } else {
+          alert("Error: " + error.message);
+        }
+      }
+    });
+  </script>
+</body>
            
 <!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -283,4 +270,5 @@
 
 </body>
 </html>
+
 
