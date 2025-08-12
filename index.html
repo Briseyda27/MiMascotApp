@@ -12,14 +12,11 @@
     <link rel="icon" href="WhatsApp Image 2025-06-07 at 7.07.07 PM.jpeg">
 </head>
 <script>  
-  // Espera que el DOM esté cargado  
   document.addEventListener("DOMContentLoaded", function () {  
-
-    // 🔹 Verificar si ya se mostró antes
     if (localStorage.getItem("formularioMostrado") === "true") {
       document.getElementById("formModal").style.display = "none";
       document.body.classList.add("acceso-activo");
-      return; // Evita que vuelva a pedir datos
+      return;
     }
 
     const form = document.getElementById("userForm");  
@@ -41,21 +38,15 @@
         return;  
       }  
 
-      // ✅ Guardar que ya se completó
       localStorage.setItem("formularioMostrado", "true");
   
-      // ✅ Ocultar el modal  
       modal.style.display = "none";  
-  
-      // ✅ Mostrar contenido activando clase al body  
       document.body.classList.add("acceso-activo");  
     });  
   });  
 </script>
 
-
 <body>
-    <!-- Modal bloqueante -->
 <!-- Modal del formulario de acceso -->
 <div id="formModal">
   <form id="userForm">
@@ -67,49 +58,6 @@
     <button type="submit">Ingresar</button>
   </form>
 </div>
-
-<script>  
-  // Espera que el DOM esté cargado  
-  document.addEventListener("DOMContentLoaded", function () {  
-    // 🔹 Verificar si ya se mostró antes
-    if (localStorage.getItem("formularioMostrado") === "true") {
-      document.getElementById("formModal").style.display = "none";
-      document.body.classList.add("acceso-activo");
-      return; // Evita que el resto del código vuelva a pedir datos
-    }
-
-    const form = document.getElementById("userForm");  
-    const modal = document.getElementById("formModal");  
-  
-    form.addEventListener("submit", function (e) {  
-      e.preventDefault();  
-  
-      const nombre = document.getElementById("nombre").value.trim();  
-      const correo = document.getElementById("correo").value.trim();  
-  
-      if (nombre === "") {  
-        alert("Debes ingresar tu nombre completo para continuar.");  
-        return;  
-      }  
-  
-      if (correo === "") {  
-        alert("Debes ingresar tu correo electrónico para continuar.");  
-        return;  
-      }  
-
-      // ✅ Guardar que ya se mostró
-      localStorage.setItem("formularioMostrado", "true");
-  
-      // ✅ Ocultar el modal  
-      modal.style.display = "none";  
-  
-      // ✅ Mostrar contenido activando clase al body  
-      document.body.classList.add("acceso-activo");  
-    });  
-  });  
-</script>
-           
-    
            
 <!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -136,7 +84,7 @@
     <div class="container mt-4">
         <div class="ratio ratio-16x9">
             <video autoplay loop muted>
-                <source src="Video.mp4" type="video/mp4">
+                <source src="../Imagenes/video.mp4" type="video/mp4">
                 Tu navegador no soporta la reproducción de videos.
             </video>
         </div>
@@ -146,7 +94,13 @@
     <section class="mt-4">
         <h3>Un pedacito de nosotros</h3>
         <p>
-            Nuestra empresa se enfoca en brindar a los dueños de mascotas una plataforma completa...
+            Nuestra empresa se enfoca en brindar a los dueños de mascotas una plataforma completa con información confiable sobre el cuidado de sus animales. 
+                A través de nuestra página web, los usuarios podrán acceder a consejos prácticos para garantizar el bienestar de sus mascotas, desde alimentación 
+                y entrenamiento hasta higiene y socialización. Además, facilitamos el acceso a servicios de veterinarias y peluquerías, permitiendo que las personas
+                encuentren fácilmente opciones cercanas y de calidad para el cuidado de sus compañeros peludos. También promovemos la prevención de enfermedades en 
+                las mascotas, proporcionando información detallada sobre vacunas, hábitos saludables y señales de alerta temprana para distintas condiciones. 
+                Nuestro objetivo es educar a los dueños para que tomen medidas proactivas en la salud de sus animales y, así, mejorar su calidad de vida. Con
+                esta iniciativa, buscamos crear una comunidad comprometida con el bienestar de las mascotas y ofrecer herramientas útiles para su cuidado diario.
         </p>
     </section>
 
@@ -159,8 +113,9 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Briseyda Flores</h5>
-                        <p class="card-text"> Briseyda Jeannette Flores Ortiz...</p>
-                        <img src="Briseyda.jpg" alt="Integrante" class="img-fluid rounded-circle">
+                        <p class="card-text">  con una gran determinación y muchas aspiraciones. Se esfuerza por siempre dar lo mejor de ella y mostrarse
+                                de una forma profesional y enfocada. Posee habilidades en liderazgo, trabajo en equipo y adaptabilidad.</p>
+                        <img src="../Imagenes/Briseyda.jpg" alt="Integrante" class="img-fluid rounded-circle">
                     </div>
                 </div>
             </div>
@@ -168,8 +123,10 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Dulce Sandoval</h5>
-                        <p class="card-text">Dulce María Sandoval Hernández...</p>
-                        <img src="Dulce.jpg" alt="Integrante 2" class="img-fluid rounded-circle">
+                        <p class="card-text">Dulce María Sandoval Hernández, reside en santa ana. Tiene habilidades
+                                que son muy importantes para que sea una joven con buen futuro tales como creatividad, pensamiento crítico, 
+                                comunicacion asertiva y resiliencia que la convierten en una persona única.</p>
+                         <img src="../Imagenes/Dulce.jpg" alt="Integrante 2" class="img-fluid rounded-circle">
                     </div>
                 </div>
             </div>
@@ -177,8 +134,10 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Roxana Vega</h5>
-                        <p class="card-text">Roxana Marilyn Vega Pineda...</p>
-                        <img src="Marelin.jpg" alt="Integrante 3" class="img-fluid rounded-circle">
+                        <p class="card-text">Roxana Marilyn Vega Pineda nació el 27 de abril de 2008 en Santa Ana. 
+                                 Desde mu joven, demostro su interés por el aprendizaje y interés por luchar por sus sueños. Además, Marilyn 
+                                tuvo la oportunidad de  ser beneficiaria en la Fundación Gloria de Krite donde estuvo tres años.</p>
+                       <img src="../Imagenes/Marelin.jpg" alt="Integrante 3" class="img-fluid rounded-circle">
                     </div>
                 </div>
             </div>
@@ -186,8 +145,10 @@
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Josué Ascencio</h5>
-                        <p class="card-text">Herberth Josué Ascencio Hernández...</p>
-                        <img src="Josue.jpg" alt="Integrante 4" class="img-fluid rounded-circle">
+                        <p class="card-text">Herberth Josué Ascencio Hernández nació el 30 de junio de 2008 y, 
+                                desde sus primeros años, demostró una fortaleza inquebrantable. A lo largo de su vida, ha enfrentado desafíos
+                                 que habrían detenido a muchos, pero su resiliencia siempre lo ha impulsado a seguir adelante.</p>
+                          <img src="../Imagenes/Josue.jpg" alt="Integrante 4" class="img-fluid rounded-circle">
                     </div>
                 </div>
             </div>
@@ -197,9 +158,18 @@
     <!-- Objetivo, misión y visión -->
     <section class="mt-4">
         <h2>Nuestro objetivo, misión y visión</h2>
-        <p><strong>🎯 Objetivo:</strong> Brindar a los dueños de mascotas...</p>
-        <p><strong>🌍 Misión:</strong> Facilitar el acceso a información...</p>
-        <p><strong>🚀 Visión:</strong> Ser la plataforma líder en asesoramiento...</p>
+        <p><strong>🎯 Objetivo:</strong> Brindar a los dueños de mascotas una plataforma 
+                digital completa donde puedan acceder a información confiable sobre el cuidado de sus animales, encontrar
+                 servicios veterinarios y de peluquería, y aprender sobre medidas de prevención para garantizar la salud y
+                  bienestar de sus mascotas.</p>
+        <p><strong>🌍 Misión:</strong> Facilitar el acceso a información y servicios esenciales
+                para el cuidado de las mascotas, promoviendo la educación y prevención de enfermedades. A través de nuestra 
+                plataforma, buscamos crear una comunidad comprometida con el bienestar animal, proporcionando recursos útiles
+                 y conectando a los dueños con profesionales de confianza.</p>
+        <p><strong>🚀 Visión:</strong> Ser la plataforma líder en asesoramiento y servicios para el 
+                cuidado de mascotas, reconocida por su impacto en la salud y bienestar animal. Queremos transformar la forma en 
+                que las personas acceden a información y servicios para sus mascotas, contribuyendo a una sociedad más consciente
+                 y responsable con sus animales de compañía.</p>
     </section>
 
     <!-- Sección de comentarios con Firebase -->
@@ -283,5 +253,3 @@
 
 </body>
 </html>
-
-
